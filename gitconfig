@@ -1,0 +1,19 @@
+[user]
+	name = Nick Meyer
+	email = nicholasmeyer@gmail.com
+[color]
+  ui = auto
+[core]
+  pager = less -R
+	excludesfile = /Users/nicholasmeyer/.gitignore
+[log]
+  decorate = short
+[pager]
+  status = true
+  show-branch = true
+[alias]
+  oneline = log --oneline
+  graph = log --oneline --graph
+  last = log -l
+  lol = log --pretty=oneline --abbrev-commit --graph --decorate
+  unstage = reset HEAD
