@@ -109,39 +109,53 @@ let g:Powerline_symbols = 'fancy'
 
 autocmd BufEnter * silent! lcd %:p:h:gs/ /\\ /
 
-set rtp+=~/.vim/bundle/vundle/
-call vundle#rc()
-
-" tpope is god (also, pyflakes) 
-Bundle 'gmarik/vundle'
-Bundle 'Lokaltog/vim-easymotion'
-Bundle 'Lokaltog/vim-powerline'
-Bundle 'Raimondi/delimitMate'
-Bundle 'tpope/vim-fugitive'
-Bundle 'tpope/vim-surround'
-Bundle 'LustyJuggler'
-Bundle 'scrooloose/nerdtree'
-Bundle 'taglist.vim'
-Bundle 'majutsushi/tagbar'
-Bundle 'tpope/vim-repeat'
-Bundle 'msanders/snipmate.vim'
-"Bundle 'scrooloose/snipmate-snippets'
-"Bundle 'ervandew/supertab'
-Bundle 'Valloric/YouCompleteMe'
-Bundle 'scrooloose/nerdcommenter'
-Bundle 'scrooloose/syntastic'
-Bundle 'tpope/vim-rails'
-Bundle 'sjl/gundo.vim'
-Bundle 'ap/vim-css-color'
-Bundle 'vim-scripts/omlet.vim'
-Bundle 'kien/ctrlp.vim'
-Bundle 'vim-scripts/Parameter-Text-Objects'
-Bundle 'michaeljsmith/vim-indent-object'
-Bundle 'tpope/vim-haml'
-Bundle 'rstacruz/sparkup', {'rtp': 'vim/'}
-Bundle 'tpope/vim-ragtag'
-Bundle 'eagletmt/ghcmod-vim'
-Bundle 'benmills/vimux'
+" Setting up Vundle - the vim plugin bundler
+    let iCanHazVundle=1
+    let vundle_readme=expand('~/.vim/bundle/vundle/README.md')
+    if !filereadable(vundle_readme)
+        echo "Installing Vundle.."
+        echo ""
+        silent !mkdir -p ~/.vim/bundle
+        silent !git clone https://github.com/gmarik/vundle ~/.vim/bundle/vundle
+        let iCanHazVundle=0
+    endif
+    set rtp+=~/.vim/bundle/vundle/
+    call vundle#rc()
+    Bundle 'gmarik/vundle'
+    Bundle 'Lokaltog/vim-easymotion'
+    Bundle 'Lokaltog/vim-powerline'
+    Bundle 'Raimondi/delimitMate'
+    Bundle 'tpope/vim-fugitive'
+    Bundle 'tpope/vim-surround'
+    Bundle 'LustyJuggler'
+    Bundle 'scrooloose/nerdtree'
+    Bundle 'taglist.vim'
+    Bundle 'majutsushi/tagbar'
+    Bundle 'tpope/vim-repeat'
+    Bundle 'msanders/snipmate.vim'
+    "Bundle 'scrooloose/snipmate-snippets'
+    "Bundle 'ervandew/supertab'
+    Bundle 'Valloric/YouCompleteMe'
+    Bundle 'scrooloose/nerdcommenter'
+    Bundle 'scrooloose/syntastic'
+    Bundle 'tpope/vim-rails'
+    Bundle 'sjl/gundo.vim'
+    Bundle 'ap/vim-css-color'
+    Bundle 'vim-scripts/omlet.vim'
+    Bundle 'kien/ctrlp.vim'
+    Bundle 'vim-scripts/Parameter-Text-Objects'
+    Bundle 'michaeljsmith/vim-indent-object'
+    Bundle 'tpope/vim-haml'
+    Bundle 'rstacruz/sparkup', {'rtp': 'vim/'}
+    Bundle 'tpope/vim-ragtag'
+    Bundle 'eagletmt/ghcmod-vim'
+    Bundle 'benmills/vimux'
+    "...All your other bundles...
+    if iCanHazVundle == 0
+        echo "Installing Bundles, please ignore key map error messages"
+        echo ""
+        :BundleInstall
+    endif
 
 "source ~/.vim/bundle/snipmate.vim/snippets/support_functions.vim
 
