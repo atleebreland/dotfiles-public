@@ -41,9 +41,9 @@ set ignorecase
 " Editing
 " ========
 syntax enable
-set tabstop=2
-set shiftwidth=2
-set softtabstop=2
+set tabstop=4
+set shiftwidth=4
+set softtabstop=4
 set autoindent
 set smarttab
 set expandtab
@@ -55,11 +55,11 @@ set expandtab
 let mapleader = ","
 let g:maplead = ","
 
-" Enter adds a line below the current one in command mode
-map <silent> <CR> o<ESC>
+ "Enter adds a line below the current one in command mode
+"map <silent> <CR> o<ESC>
+map <silent> <CR> :w<CR>
 
-" Let space and backspace act the same as in insert mode
-map <silent> <Space>     i<Space><Esc>
+" Let backspace act the same as in insert mode
 map <silent> <Backspace> X
 
 " Quickly open vimrc
@@ -75,6 +75,7 @@ map <C-l> <C-w>l
 inoremap jj <Esc>
 inoremap jk <Esc>
 inoremap kj <Esc>
+inoremap <Esc> <NOP>
 
 " Provide consistent capital behavior for y
 map Y y$
@@ -150,6 +151,9 @@ autocmd BufEnter * silent! lcd %:p:h:gs/ /\\ /
     Bundle 'tpope/vim-ragtag'
     Bundle 'eagletmt/ghcmod-vim'
     Bundle 'benmills/vimux'
+    Bundle 'def-lkb/merlin', {'rtp' : 'vim/'}
+    Bundle 'tpope/vim-sleuth'
+    Bundle 'PeterRincker/vim-argumentative'
     "...All your other bundles...
     if iCanHazVundle == 0
         echo "Installing Bundles, please ignore key map error messages"
@@ -205,6 +209,7 @@ map <leader>c :CoffeeCompile<CR>
 
 " Shortcut for easymotion, mapped to caps lock through F3
 nmap <F3> ,,
+nmap <Space> ,,
 
 " Quick way to jump to lines in compiled javascript files
 command -nargs=1 C CoffeeCompile | :<args>
@@ -255,5 +260,9 @@ function ClearRun(cmd)
     call VimuxClearRunnerHistory()
     call VimuxRunCommand(a:cmd)
 endfunction      
-map <Leader>o :w<CR>:call ClearRun("make test")<CR>
+map <Leader>o :w<CR>:call ClearRun("make run")<CR>
 let VimuxUseNearestPane = 1
+
+set tabstop=4
+set shiftwidth=4
+set softtabstop=4
