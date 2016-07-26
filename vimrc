@@ -75,7 +75,7 @@ map <C-l> <C-w>l
 inoremap jj <Esc>
 inoremap jk <Esc>
 inoremap kj <Esc>
-inoremap <Esc> <NOP>
+"inoremap <Esc> <NOP>
 
 " Provide consistent capital behavior for y
 map Y y$
@@ -108,7 +108,7 @@ au WinLeave * :setlocal nonumber
 
 let g:Powerline_symbols = 'fancy'
 
-autocmd BufEnter * silent! lcd %:p:h:gs/ /\\ /
+"autocmd BufEnter * silent! lcd %:p:h:gs/ /\\ /
 
 " Setting up Vundle - the vim plugin bundler
     let iCanHazVundle=1
@@ -126,6 +126,7 @@ autocmd BufEnter * silent! lcd %:p:h:gs/ /\\ /
     Bundle 'Lokaltog/vim-easymotion'
     Bundle 'Lokaltog/vim-powerline'
     Bundle 'Raimondi/delimitMate'
+    "Bundle 'jiangmiao/auto-pairs'
     Bundle 'tpope/vim-fugitive'
     Bundle 'tpope/vim-surround'
     Bundle 'LustyJuggler'
@@ -144,7 +145,6 @@ autocmd BufEnter * silent! lcd %:p:h:gs/ /\\ /
     Bundle 'ap/vim-css-color'
     Bundle 'vim-scripts/omlet.vim'
     Bundle 'kien/ctrlp.vim'
-    Bundle 'vim-scripts/Parameter-Text-Objects'
     Bundle 'michaeljsmith/vim-indent-object'
     Bundle 'tpope/vim-haml'
     Bundle 'rstacruz/sparkup', {'rtp': 'vim/'}
@@ -154,6 +154,10 @@ autocmd BufEnter * silent! lcd %:p:h:gs/ /\\ /
     Bundle 'def-lkb/merlin', {'rtp' : 'vim/'}
     Bundle 'tpope/vim-sleuth'
     Bundle 'PeterRincker/vim-argumentative'
+    Bundle 'jimenezrick/vimerl'
+    Bundle 'exu/pgsql.vim'
+    Bundle 'rust-lang/rust.vim'
+    Bundle 'tpope/vim-abolish'
     "...All your other bundles...
     if iCanHazVundle == 0
         echo "Installing Bundles, please ignore key map error messages"
@@ -242,6 +246,9 @@ noremap k gk
 noremap gj j
 noremap gk k
 
+" Close buffer without closing split
+nmap ,d :b#<bar>bd#<CR>
+
 " Gundo settings 
 let g:gundo_debug = 1
 let g:gundo_preview_bottom = 1
@@ -260,7 +267,9 @@ function ClearRun(cmd)
     call VimuxClearRunnerHistory()
     call VimuxRunCommand(a:cmd)
 endfunction      
-map <Leader>o :w<CR>:call ClearRun("make run")<CR>
+"let g:tmux_command = "PYTHONPATH=/Users/nicholasmeyer/Documents/code/stxbr/backend/pyclient EJABBERD_CONFIG_FILE=/Users/nicholasmeyer/Documents/code/stxbr/backend/etc/ejabberd/ejabberd.yml python pyclient/chatbot.py"
+let g:tmux_command = "python segment.py"
+map <Leader>o :w<CR>:call ClearRun(g:tmux_command)<CR>
 let VimuxUseNearestPane = 1
 
 set tabstop=4
