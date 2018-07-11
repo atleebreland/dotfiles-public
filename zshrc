@@ -7,7 +7,8 @@ bindkey -v
 # Look in ~/.oh-my-zsh/themes/
 # Optionally, if you set this to "random", it'll load a random theme each
 # time that oh-my-zsh is loaded.
-ZSH_THEME="Soliah"
+#ZSH_THEME="Soliah"
+ZSH_THEME="agnoster"
 
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
@@ -31,7 +32,7 @@ ZSH_THEME="Soliah"
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(git osx perl python github git-flow)
+plugins=(git osx perl python github)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -40,15 +41,13 @@ export PATH=/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/X11/bin:/usr/local
 
 [[ -s $HOME/.rvm/scripts/rvm ]] && source $HOME/.rvm/scripts/rvm
 
-alias mvim=/Applications/MacVim.app/Contents/MacOS/Vim
-alias gvim="mvim -v"
 alias vim="mvim -v"
 alias vi="mvim -v"
 alias fab="nocorrect fab"
 alias vagrant="nocorrect vagrant"
 alias gco="git checkout"
 alias gst="git status"
-alias gb="git branch"
+#alias gb="git branch"
 alias gcob="git checkout -b"
 alias glog="git log"
 alias glp='git log -p'
@@ -61,6 +60,10 @@ alias gd='git diff'
 alias gds='git diff --stat'
 alias mh="fast_fab migrate_head"
 alias da="fast_fab deploy_api"
+alias bi="bundle install && git clean bin/ -f && git checkout -- bin/"
+alias gam="git commit --amend --no-edit && git push --force-with-lease"
+alias prc='heroku run --size=performance-l "OD_CURRENT_USER_EMAIL=nick.meyer@opendoor.com rails c" -a opendoor-web'
+alias src='heroku run --size=performance-l "OD_CURRENT_USER_EMAIL=nick.meyer@opendoor.com rails c" -a staging-opendoor-web'
 
 # Usage: seasprint foo.pdf
 function seasprint() {
@@ -72,10 +75,27 @@ function listprinters() {
   ssh nicmeyer@eniac.seas.upenn.edu lpstat -o -p -d
 }
 
-export EDITOR="/Applications/MacVim -v"
+export EDITOR="mvim -v"
 
 PATH=$PATH:$HOME/.rvm/bin:$HOME/.cabal/bin:~/Library/Haskell/bin # Add RVM to PATH for scripting
+PATH=$PATH:/usr/local/opt/go/libexec/bin
 
-export WORKON_HOME=$HOME/.virtualenvs
-export PROJECT_HOME=$HOME/Devel
-source /usr/local/bin/virtualenvwrapper.sh
+export GOPATH=$HOME/go
+PATH=$GOPATH/bin:$PATH
+
+#export WORKON_HOME=$HOME/.virtualenvs
+#export PROJECT_HOME=$HOME/Devel
+#source /usr/local/bin/virtualenvwrapper.sh
+#
+eval "$(rbenv init -)"
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+. /Users/nick.meyer/.opam/opam-init/init.zsh > /dev/null 2> /dev/null || true
+
+source '/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.zsh.inc'
+source '/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.zsh.inc'
+
+PATH=$HOME/anaconda3/bin:$PATH
+
+export FZF_DEFAULT_COMMAND='rg --files --hidden --follow --glob "!.git/*"'
