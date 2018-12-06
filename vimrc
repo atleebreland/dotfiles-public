@@ -52,7 +52,7 @@ set autoindent
 set smarttab
 set expandtab
 
-set rubydll=/usr/local/opt/ruby@2.3/lib/libruby.dylib
+"set rubydll=/usr/local/opt/ruby@2.3/lib/libruby.dylib
 
 " ========
 " Mappings
@@ -137,7 +137,7 @@ call plug#begin('~/.vim/plugged')
     Plug 'tpope/vim-surround'
     Plug 'sjbach/lusty'
     Plug 'scrooloose/nerdtree'
-    Plug 'taglist.vim'
+    "Plug 'taglist.vim'
     Plug 'majutsushi/tagbar'
     Plug 'tpope/vim-repeat'
     Plug 'msanders/snipmate.vim'
@@ -161,6 +161,8 @@ call plug#begin('~/.vim/plugged')
     Plug 'mxw/vim-jsx'
     Plug 'ianks/vim-tsx'
     Plug 'pangloss/vim-javascript'
+    Plug 'fatih/vim-go'
+    Plug 'mdempsky/gocode', {'rtp': 'vim/'}
     "Plug 'jiangmiao/auto-pairs' --
     "Plug 'scrooloose/snipmate-snippets' --
     "Plug 'ervandew/supertab' --
@@ -170,6 +172,7 @@ call plug#begin('~/.vim/plugged')
     "Plug 'def-lkb/merlin', {'rtp' : 'vim/'} --
     "Plug 'takac/vim-hardtime' --
     Plug 'w0rp/ale'
+    Plug 'uarun/vim-protobuf'
     "Plug 'davidhalter/jedi-vim'
 call plug#end()
 
@@ -386,7 +389,7 @@ let g:ale_linters = {'python': ['flake8', 'mypy'], 'javascript': ['eslint']}
 let g:ale_lint_on_text_changed = 'never'
 let g:ale_lint_on_enter = 0
 
-let g:ycm_python_binary_path = 'python'
+let g:ycm_python_binary_path = '/usr/bin/python'
 
 " Copy to system clipboard by default
 "set clipboard=unnamedplus
@@ -425,3 +428,13 @@ nnoremap <leader>yr :YcmCompleter GoToReferences<CR>
 nnoremap <leader>ys :YcmDiags<CR>
 nnoremap <leader>yD ::YcmForceCompileAndDiagnostics<CR>
 nnoremap <leader>yR :YcmRestartServer<CR><F9>
+
+let g:go_highlight_build_constraints = 1
+let g:go_highlight_extra_types = 1
+let g:go_highlight_fields = 1
+let g:go_highlight_functions = 1
+let g:go_highlight_methods = 1
+let g:go_highlight_operators = 1
+let g:go_highlight_structs = 1
+let g:go_highlight_types = 1
+"let g:go_auto_type_info = 1
